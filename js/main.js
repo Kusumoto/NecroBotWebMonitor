@@ -50,7 +50,6 @@ var init = function() {
 var eventselect = function(evt) {
     var json = JSON.parse(evt.data)
     var type = json.$type.split(',');
-    console.log(type[0])
     switch (type[0]) {
         case 'PoGo.NecroBot.Logic.Event.UpdatePositionEvent':
             plotposition(json)
