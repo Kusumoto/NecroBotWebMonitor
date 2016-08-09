@@ -1,4 +1,4 @@
-[
+var pokemondata = [
   {
     "Number": "001",
     "Name": "Bulbasaur",

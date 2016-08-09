@@ -15,7 +15,6 @@
         }
 
         #map {
-            background: red;
             display: block;
             position: absolute;
             height: auto;
@@ -46,7 +45,7 @@
                     <li><a href="#">Profile</a></li>
                     <li><a href="#" id="item_menu" data-toggle="modal" data-target="#item">Items</a></li>
                     <li><a href="#" id="pokemon_menu" data-toggle="modal" data-target="#pokemon">Pokemon</a></li>
-                    <li><a href="#" id="eggs_menu">Eggs</a></li>
+                    <li><a href="#" id="eggs_menu" data-toggle="modal" data-target="#pokeegg">Eggs</a></li>
                 </ul>
             </div>
     </nav>
@@ -88,10 +87,29 @@
         </div>
     </div>
 
+    <div class="modal fade bs-example-modal-lg" id="pokeegg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Eggs</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="pokegg"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" charset="utf-8"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
 <script src="https://hpneo.github.io/gmaps/gmaps.js" charset="utf-8"></script>
+<script src="data/pokemondata.js" charset="utf-8"></script>
+<script src="data/items.js" charset="utf-8"></script>
 <script src="js/config.js" charset="utf-8"></script>
 <script src="js/main.js" charset="utf-8"></script>
 

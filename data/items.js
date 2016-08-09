@@ -1,4 +1,4 @@
-{
+var itempok = {
     "0": "Unknown",
 
     "1": "Pokeball",
