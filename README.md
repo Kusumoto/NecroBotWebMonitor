@@ -1,5 +1,7 @@
-# NecroBotWebMonitor
+# NecroBotWebMonitor (BETA)
 Simple Web application for monitoring NecroBot working
+
+![NecroBotWebMonitor](http://upic.me/i/52/screenshort.png "NecroBotWebMonitor")
 
 ## Configuration
 - Download or Clone this repository to your computer.
