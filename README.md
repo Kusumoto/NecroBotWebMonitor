@@ -1,5 +1,5 @@
 # NecroBotWebMonitor (BETA)
-Simple Web application for monitoring NecroBot working
+Simple Web application for monitoring NecroBot (Pokemon Go Bot)
 
 ![NecroBotWebMonitor](https://s10.postimg.org/tpbw5qsk9/screenshort.png)
 
