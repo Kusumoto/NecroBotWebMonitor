@@ -61,6 +61,9 @@ var eventselect = function(evt) {
             break;
         case 'PoGo.NecroBot.Logic.Event.InventoryListEvent':
             itemlist(json)
+            break;
+        case 'PoGo.NecroBot.Logic.Event.PokemonListEvent':
+            pokemonlist(json)
         default:
 
     }
@@ -70,7 +73,7 @@ var plotposition = function(json) {
     var path = poly.getPath();
     path.push(new google.maps.LatLng(json.Latitude, json.Longitude));
     poly.setPath(path);
-    map.setZoom(20)
+    map.setZoom(18)
     map.setCenter(json.Latitude, json.Longitude)
 }
 
@@ -97,4 +100,23 @@ var itemlist = function(json) {
     })
     html += '</div>'
     $("#itemdata").html(html);
+}
+
+var pokemonlist = function(json) {
+  var html = '';
+  html += '<div class="row">'
+  json.PokemonList.$values.forEach(function(item, index) {
+      html += '<div class="col-md-4">'
+      if (item.Item1.PokemonId.toString().length === 3) {
+        html += '<center><img src="image/pokemon/' + item.Item1.PokemonId + '.png" class="img-responsive" width="100px" height="100px"/></center>'
+      } else if (item.Item1.PokemonId.toString().length === 2){
+        html += '<center><img src="image/pokemon/0' + item.Item1.PokemonId + '.png" class="img-responsive" width="100px" height="100px"/></center>'
+      } else {
+        html += '<center><img src="image/pokemon/00' + item.Item1.PokemonId + '.png" class="img-responsive" width="100px" height="100px"/></center>'
+      }
+      html += '<p class="text-center">CP : ' + item.Item1.Cp + '</p>'
+      html += '</div>'
+  })
+  html += '</div>'
+  $("#pokdata").html(html);
 }

@@ -45,7 +45,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">Profile</a></li>
                     <li><a href="#" id="item_menu" data-toggle="modal" data-target="#item">Items</a></li>
-                    <li><a href="#" id="pokemon_menu">Pokemon</a></li>
+                    <li><a href="#" id="pokemon_menu" data-toggle="modal" data-target="#pokemon">Pokemon</a></li>
                     <li><a href="#" id="eggs_menu">Eggs</a></li>
                 </ul>
             </div>
@@ -63,6 +63,23 @@
                 </div>
                 <div class="modal-body">
                     <div id="itemdata"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-lg" id="pokemon" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Pokemon</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="pokdata"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
