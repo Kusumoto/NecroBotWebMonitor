@@ -53,19 +53,19 @@ var eventselect = function(evt) {
     console.log(type[0])
     switch (type[0]) {
         case 'PoGo.NecroBot.Logic.Event.UpdatePositionEvent':
-        plotposition(json)
-        break;
+            plotposition(json)
+            break;
         case 'PoGo.NecroBot.Logic.Event.PokeStopListEvent':
-        plotpokestop(json)
-        break;
+            plotpokestop(json)
+            break;
         case 'PoGo.NecroBot.Logic.Event.InventoryListEvent':
-        itemlist(json)
-        break;
+            itemlist(json)
+            break;
         case 'PoGo.NecroBot.Logic.Event.PokemonListEvent':
-        pokemonlist(json)
-        break;
+            pokemonlist(json)
+            break;
         case 'PoGo.NecroBot.Logic.Event.EggsListEvent':
-        eggdata(json);
+            eggdata(json);
         default:
 
     }
@@ -101,7 +101,7 @@ var itemlist = function(json) {
     json.Items.$values.forEach(function(item, index) {
         html += '<div class="col-md-4">'
         html += '<center><img src="image/items/' + item.ItemId + '.png" class="img-responsive" width="100px" height="100px"/></center>'
-        html += '<center>' +  itempok[item.ItemId] + '</center>'
+        html += '<center>' + itempok[item.ItemId] + '</center>'
         html += '<p class="text-center">' + item.Count + '</p>'
         html += '</div>'
     })
@@ -149,11 +149,6 @@ var eggdata = function(json) {
     json.UnusedEggs.$values.forEach(function(item, index) {
         html += '<div class="col-md-4">'
         html += '<center><img src="image/items/Egg.png" class="img-responsive" width="100px" height="100px"/></center>'
-        if (item.ItemId != 901) {
-            html += '<center>Uses Remaining : ' + item.UsesRemaining + '</center>'
-        } else {
-            html += '<center>Uses Remaining : Unlimited</center>'
-        }
         html += '<p class="text-center">' + parseInt(item.EggKmWalkedTarget) + ' Km / ' + parseInt(item.EggKmWalkedTarget) + ' Km</p>'
         html += '</div>'
     })
