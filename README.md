@@ -1,7 +1,11 @@
 # NecroBotWebMonitor (BETA)
 Simple Web application for monitoring NecroBot (Pokemon Go Bot)
 
-![NecroBotWebMonitor](https://s10.postimg.org/tpbw5qsk9/screenshort.png)
+![NecroBotWebMonitor1](https://github.com/Kusumoto/NecroBotWebMonitor/raw/master/screenshot/screen1.png)
+![NecroBotWebMonitor2](https://github.com/Kusumoto/NecroBotWebMonitor/raw/master/screenshot/screen2.png)
+![NecroBotWebMonitor3](https://github.com/Kusumoto/NecroBotWebMonitor/raw/master/screenshot/screen3.png)
+![NecroBotWebMonitor4](https://github.com/Kusumoto/NecroBotWebMonitor/raw/master/screenshot/screen4.png)
+![NecroBotWebMonitor5](https://github.com/Kusumoto/NecroBotWebMonitor/raw/master/screenshot/screen5.png)
 
 ## Configuration
 - Download or Clone this repository to your computer.
@@ -15,7 +19,10 @@ Simple Web application for monitoring NecroBot (Pokemon Go Bot)
 var config = {
   'GMapAPIKey' : 'YOU GOOGLE MAP API KEY',
   'NecroBotHost' : 'localhost',
-  'NecroBotPort' : 14252
+  'NecroBotPort' : 14252,
+  'MapLineColor' : 'red',
+  'FollowTrainer' : true,
+  'MapZoomLevel' : 20
 }
 ```
 You can get Google Map API key from => https://developers.google.com/maps/documentation/javascript/get-api-key
