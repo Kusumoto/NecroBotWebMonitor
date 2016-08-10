@@ -4,4 +4,5 @@ var config = {
   'NecroBotPort' : 14252,
   'MapLineColor' : 'red',
   'FollowTrainer' : true,
+  'MapZoomLevel' : 20
 }

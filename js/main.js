@@ -18,6 +18,9 @@ $(document).ready(function() {
         $("#pokegg").html('<center><img src="image/loading.svg"></center>')
         websocket.send("EggsList");
     })
+    $('#profile_menu').on("click", function() {
+        websocket.send("{ Command : 'GetTrainerProfile' }");
+    })
 })
 
 var init = function() {
@@ -40,9 +43,11 @@ var init = function() {
         websocket.onopen = function(evt) {
             console.log("CONNECTED!")
         }
-
         websocket.onmessage = function(evt) {
             eventselect(evt)
+        };
+        websocket.onerror = function(evt) {
+            alert("Error : Websocket connection error!")
         };
     });
 }
@@ -65,6 +70,13 @@ var eventselect = function(evt) {
             break;
         case 'PoGo.NecroBot.Logic.Event.EggsListEvent':
             eggdata(json);
+            break;
+        case 'PoGo.NecroBot.CLI.WebSocketHandler.GetCommands.Events.TrainerProfileResponce':
+            homeprofile(json);
+            break;
+        case 'PoGo.NecroBot.Logic.Event.PokemonCaptureEvent':
+            console.log(json)
+            break;
         default:
 
     }
@@ -76,10 +88,11 @@ var plotposition = function(json) {
     poly.setPath(path);
 
     if (!isfirstplot || config.FollowTrainer) {
-        map.setZoom(18)
+        map.setZoom(config.MapZoomLevel)
         map.setCenter(json.Latitude, json.Longitude)
         isfirstplot = true
     }
+    websocket.send("{ Command : 'GetTrainerProfile' }");
 }
 
 var plotpokestop = function(json) {
@@ -154,4 +167,58 @@ var eggdata = function(json) {
     html += '</div>'
 
     $("#pokegg").html(html);
+}
+
+var homeprofile = function(json) {
+    var xpTable = [
+        0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000,
+        10000, 10000, 10000, 10000, 15000, 20000, 20000, 20000, 25000, 25000,
+        50000, 75000, 100000, 125000, 150000, 190000, 200000, 250000, 300000, 350000,
+        500000, 500000, 750000, 1000000, 1250000, 1500000, 2000000, 2500000, 3000000, 5000000
+    ];
+    var level = parseInt(json.Data.Stats.Level);
+    var totalexp = (parseInt(json.Data.Stats.Experience) - parseInt(json.Data.Stats.PrevLevelXp) - xpTable[level - 1]);
+    var levelupexp = (parseInt(json.Data.Stats.NextLevelXp) - parseInt(json.Data.Stats.PrevLevelXp) - xpTable[level - 1]);
+    var percentageexp = ((totalexp / levelupexp) * 100).toFixed(2);
+    var percentageatt = (parseInt(json.Data.Stats.BattleAttackWon) / (parseInt(json.Data.Stats.BattleAttackTotal)) * 100).toFixed(2);
+    var percentagetra = (parseInt(json.Data.Stats.BattleTrainingWon) / (parseInt(json.Data.Stats.BattleTrainingTotal)) * 100).toFixed(2);
+    $("#bar_exp").css("width", percentageexp + "%")
+    $("#bar_exp_txt").text(percentageexp + "%")
+    $("#bar_att").css("width", percentageatt + "%")
+    $("#bar_att_txt").text(percentageatt + "%")
+    $("#bar_tra").css("width", percentagetra + "%")
+    $("#bar_tra_txt").text(percentagetra + "%")
+
+    switch (json.Data.Profile.Team) {
+        case 0:
+            $("#team_data").prop('src', 'image/forts/TeamLess.png')
+            $("#model_team").prop('src', 'image/forts/TeamLess.png')
+            break;
+        case 1:
+            $("#team_data").prop('src', 'image/forts/Mystic.png')
+            $("#model_team").prop('src', 'image/forts/Mystic.png')
+            break;
+        case 2:
+            $("#team_data").prop('src', 'image/forts/Valor.png')
+            $("#model_team").prop('src', 'image/forts/Valor.png')
+            break;
+        case 3:
+            $("#team_data").prop('src', 'image/forts/Instinct.png')
+            $("#model_team").prop('src', 'image/forts/Instinct.png')
+            break;
+    }
+    $("#name_data").text(json.Data.Profile.Username);
+    $("#level_data").text("Level : " + json.Data.Stats.Level)
+    $("#exp_data").text("EXP : (" + totalexp + "/" + levelupexp + ")")
+
+    $("#model_username").text(json.Data.Profile.Username);
+    $("#model_level").text("Level : " + json.Data.Stats.Level);
+    $("#model_maxitem").text(json.Data.Profile.MaxItemStorage);
+    $("#model_maxpok").text(json.Data.Profile.MaxPokemonStorage);
+    $("#model_bat").text(json.Data.Stats.BattleAttackTotal);
+    $("#model_baw").text(json.Data.Stats.BattleAttackWon);
+    $("#model_bdw").text(json.Data.Stats.BattleDefendedWon);
+    $("#model_btt").text(json.Data.Stats.BattleTrainingTotal);
+    $("#model_btw").text(json.Data.Stats.BattleTrainingWon);
+    $("#model_txtexp").text(totalexp + "/" + levelupexp);
 }
